@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start-5-aside-admin": "ng serve --port 3899",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "start-emulators": "cd ../5-aside-functions && npm run build && cd ../5-aside-admin &&  firebase emulators:start",
