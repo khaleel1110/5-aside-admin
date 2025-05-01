@@ -37,6 +37,7 @@
 
   .ql-editor {
     position: relative;
+    min-height: 20rem;
     padding: $quill-editor-padding-y $quill-editor-padding-x;
 
     p {

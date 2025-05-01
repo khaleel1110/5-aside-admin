@@ -3,7 +3,7 @@
 
 $font-family-base:                                          "Inter", sans-serif !default;
 
-$font-size-base:                                            .845rem !default; // Assumes the browser default, typically `16px`
+$font-size-base:                                            .875rem !default; // Assumes the browser default, typically `16px`
 $font-size-xs:                                              $font-size-base * .75 !default;
 $font-size-sm:                                              .8125rem !default;
 $font-size-lg:                                              1rem !default;
@@ -44,14 +44,14 @@ $font-sizes: (
 ) !default;
 
 // Colors
-$body-bg:                                                   rgba(241, 241, 241, 1) !default;
+$body-bg:                                                   $white !default;
 $body-color:                                                $gray-700 !default;
 $white-bg:                                                  #fff !default;
 $link-color:                                                $primary !default;
 $link-hover-color:                                          darken($primary, 7%) !default;
 $active-color:                                              $link-color !default;
 $disabled-color:                                            $gray-400 !default;
-$text-muted:                                                $gray-900 !default;
+$text-muted:                                                $gray-600 !default;
 $white-10:                                                  rgba($white, .1) !default;
 $white-70:                                                  rgba($white, .7) !default;
 $link-light-hover-color:                                    $white-70 !default;
@@ -133,8 +133,6 @@ $spacers: (
   8: calc($spacer * 3.5),
   9: calc($spacer * 4),
   10: calc($spacer * 4.5),
-  11: calc($spacer * 5),
-  12: calc($spacer * 5.5),
 );
 
 // Content Spacer
@@ -195,7 +193,6 @@ $opacity: (
 // Theme Colors
 $theme-colors: (
   "primary":    $primary,
-  "primary-deep":    $primary-deep,
   "secondary":  $secondary,
   "success":    $success,
   "info":       $info,
@@ -738,7 +735,7 @@ $avatar-width-xs:                                           $btn-icon-width-xs !
 $avatar-width-sm:                                           $btn-icon-width-sm !default;
 $avatar-width-lg:                                           $btn-icon-width-lg !default;
 $avatar-width-xl:                                           $font-size-base * 5.625 !default;
-$avatar-width-xxl:                                          $font-size-base * 9 !default;
+$avatar-width-xxl:                                          $font-size-base * 11 !default;
 $avatar-status-width:                                       $btn-status-width !default;
 $avatar-status-width-sm:                                    $font-size-base * .9375 !default;
 $avatar-status-width-lg:                                    $font-size-base * 1.625 !default;
@@ -2643,6 +2640,50 @@ $jvm-tooltip-translate-value:                               1rem 1rem !default;
 $jvm-container-height-sm:                                   20rem !default;
 $jvm-container-height-md:                                   25rem !default;
 $jvm-container-height-lg:                                   30rem !default;
+
+
+
+// Colors
+$nouislider-lg-value-color:                                 $body-color !default;
+$nouislider-pips-color:                                     $body-color !default;
+
+// Backgrounds
+$nouislider-target-bg-color:                                $gray-300 !default;
+$nouislider-connect-bg-color:                               $primary !default;
+$nouislider-marker-bg-color:                                $gray-400 !default;
+
+// Borders
+$nouislider-handle-border-radius:                           $border-radius-rounded !default;
+$nouislider-tooltip-pseudo-border-width:                    .3125rem !default;
+$nouislider-tooltip-pseudo-border-top-color:                $white !default;
+
+// Type
+$nouislider-tooltip-font-size:                              .8125rem !default;
+$nouislider-lg-value-font-size:                             .875rem !default;
+
+// Width & Heights
+$nouislider-pips-min-height:                                3rem !default;
+$nouislider-horizontal-height:                              .3125rem !default;
+$nouislider-handle-width:                                   1.75rem !default;
+$nouislider-handle-height:                                  $nouislider-handle-width !default;
+$nouislider-tooltip-min-width:                              2.5rem !default;
+$nouislider-marker-width:                                   .0625rem !default;
+
+// Box Shadows
+$nouislider-handle-box-shadow:                              $box-shadow-sm !default;
+$nouislider-tooltip-box-shadow:                             $box-shadow-sm !default;
+
+// Positions
+$nouislider-handle-top-offset:                              -.75rem !default;
+$nouislider-tooltip-pseudo-bottom-offset:                   .625rem !default;
+
+// Padding
+$nouislider-tooltip-padding-y:                              .5rem !default;
+$nouislider-tooltip-padding-x:                              $nouislider-tooltip-padding-y !default;
+
+// Margins
+$nouislider-margin-y:                                       1.25rem !default;
+$nouislider-lg-value-margin-y:                              .5rem !default;
 
 
 

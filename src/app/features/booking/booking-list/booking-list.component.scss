@@ -1,0 +1,19 @@
+.legend-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.bg-success {
+  background-color: #28a745 !important; /* Green for Played */
+}
+
+.bg-warning {
+  background-color: #ffc107 !important; /* Yellow for On Progress */
+}
+
+.bg-primary {
+  background-color: #007bff !important; /* Blue for To Do */
+}

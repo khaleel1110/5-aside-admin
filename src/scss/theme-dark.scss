@@ -1,5 +1,5 @@
 // Setup
-@import '../../node_modules/bootstrap/scss/functions';
+@import 'bootstrap/scss/functions';
 
 @import 'themes/default';
 @import 'themes/darkmode';
@@ -8,16 +8,16 @@
 @import 'front-dashboard/variables';
 @import 'themes/darkmode-variables';
 
-@import '../../node_modules/bootstrap/scss/variables';
-@import '../../node_modules/bootstrap/scss/variables-dark';
-@import '../../node_modules/bootstrap/scss/maps';
-@import '../../node_modules/bootstrap/scss/utilities';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/utilities';
 
 @import 'front-dashboard/utilities';
 @import 'user-utilities';
 
 // Bootstrap core
-@import '../../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 /*----------------------------------------------------------------------
   * Front - Responsive Website Template version v2.0.0
