@@ -56,7 +56,7 @@ import { Router, RouterLink } from '@angular/router';
       <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.address || '-' }}</dd>
 
       <dt class="col-sm-5 text-sm-end">Amount:</dt>
-      <dd class="col-sm-6 mx-3 "> ₦ {{ user.appointmentDetails.amount | currency }}</dd>
+      <dd class="col-sm-6 mx-3 "> ₦ {{ user.appointmentDetails.amount  }}</dd>
 
       <dt class="col-sm-5 text-sm-end">Payment Reference:</dt>
       <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.paymentReference || '-' }}</dd>
@@ -89,7 +89,7 @@ class="btn btn-white me-2"
   [routerLink]="['/admin/bio', user.id]"
   (click)="activeModal.close('Update')"
 >
-<i class="bi-pencil-fill me-1"></i> Update
+<i class="bi-pencil-fill me-1"></i> Edit
   </button>
   </div>
   </div>

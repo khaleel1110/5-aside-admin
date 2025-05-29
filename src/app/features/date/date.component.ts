@@ -25,67 +25,78 @@ import { UserDisplay, UsersService } from '../../services/user.service';
   ],
   template: `
 <div class="date-time-container">
-  <mat-form-field appearance="fill">
-  <mat-label>Choose a date</mat-label>
-<input
-matInput
-  [matDatepicker]="picker"
-  [(ngModel)]="selectedDate"
-(dateChange)="onDateChange()"
-required
->
-<mat-hint>MM/DD/YYYY</mat-hint>
-<mat-error *ngIf="!selectedDate">Date is required</mat-error>
-<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+<div class="d-flex row row-cols-lg-2 row-cols-md-1">
+  <div class="col-sm-6 mt-4">
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="selectedDate"
+        (dateChange)="onDateChange()"
+        required
+      >
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-error *ngIf="!selectedDate">Date is required</mat-error>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div
+      *ngIf="selectedDate && selectedStartHour != null && selectedDuration != null"
+      class="selected-info mt-4"
+    >
+      <p><strong>Selected:</strong> {{ formatSelectedDateTime() }}</p>
+    </div>
+  </div>
 
-<div *ngIf="selectedDate" class="time-picker mt-4">
-  <mat-form-field appearance="fill" class="mr-2">
-  <mat-label>Start Time</mat-label>
-<mat-select
-  [(ngModel)]="selectedStartHour"
-(selectionChange)="updateTime()"
-required
->
-<mat-option
-*ngFor="let slot of timeSlots"
-  [value]="slot.startHour"
-  [disabled]="slot.isBooked"
-  >
-  {{ formatTime(slot.startHour) }}
-<span *ngIf="slot.isBooked" class="booked-badge">Booked</span>
-</mat-option>
-</mat-select>
-<mat-error *ngIf="selectedStartHour == null">Start time is required</mat-error>
-</mat-form-field>
+  <div class="col-sm-6">
 
-<mat-form-field appearance="fill">
-<mat-label>Duration (hours)</mat-label>
-<mat-select
-  [(ngModel)]="selectedDuration"
-(selectionChange)="updateTime()"
-required
->
-<mat-option
-*ngFor="let duration of availableDurations"
-  [value]="duration.value"
-  [disabled]="duration.isBlocked"
-  >
-  {{ duration.value }} {{ duration.value === 1 ? 'hour' : 'hours' }}
-<span *ngIf="duration.isBlocked" class="blocked-badge">Blocked</span>
-</mat-option>
-</mat-select>
-<mat-error *ngIf="selectedDuration == null">Duration is required</mat-error>
-</mat-form-field>
+    <div *ngIf="selectedDate" class="time-picker mt-4">
+      <mat-form-field appearance="fill" class="mr-2">
+        <mat-label>Start Time</mat-label>
+        <mat-select
+          [(ngModel)]="selectedStartHour"
+          (selectionChange)="updateTime()"
+          required
+        >
+          <mat-option
+            *ngFor="let slot of timeSlots"
+            [value]="slot.startHour"
+            [disabled]="slot.isBooked"
+          >
+            {{ formatTime(slot.startHour) }}
+            <span *ngIf="slot.isBooked" class="booked-badge">Booked</span>
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="selectedStartHour == null">Start time is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (hours)</mat-label>
+        <mat-select
+          [(ngModel)]="selectedDuration"
+          (selectionChange)="updateTime()"
+          required
+        >
+          <mat-option
+            *ngFor="let duration of availableDurations"
+            [value]="duration.value"
+            [disabled]="duration.isBlocked"
+          >
+            {{ duration.value }} {{ duration.value === 1 ? 'hour' : 'hours' }}
+            <span *ngIf="duration.isBlocked" class="blocked-badge">Blocked</span>
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="selectedDuration == null">Duration is required</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+
 </div>
 
-<div
-*ngIf="selectedDate && selectedStartHour != null && selectedDuration != null"
-class="selected-info mt-4"
-  >
-  <p><strong>Selected:</strong> {{ formatSelectedDateTime() }}</p>
-</div>
+
+
 </div>
   `,
   styles: [`
