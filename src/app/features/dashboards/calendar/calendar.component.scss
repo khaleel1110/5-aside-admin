@@ -1,0 +1,51 @@
+.event-custom-style {
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+}
+
+.border-purple { border-color: #6f42c1 !important; }
+.border-success { border-color: #28a745 !important; }
+.border-warning { border-color: #ffc107 !important; }
+.border-primary { border-color: #007bff !important; }
+.border-info { border-color: #17a2b8 !important; }
+.border-danger { border-color: #dc3545 !important; }
+
+.card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.fc {
+  .fc-toolbar {
+    padding: 1rem;
+    background-color: #f8f9fa;
+  }
+
+  .fc-event {
+    cursor: pointer;
+    margin: 2px 0;
+    font-size: 0.9rem;
+  }
+
+  .fc-daygrid-day {
+    background: #fff;
+    border-radius: 0.25rem;
+  }
+
+  .fc-timegrid-slot {
+    height: 2.5em;
+  }
+
+  .fc-list-event-time {
+    font-weight: 600;
+  }
+
+  .fc-list-event-title {
+    font-weight: 500;
+  }
+}

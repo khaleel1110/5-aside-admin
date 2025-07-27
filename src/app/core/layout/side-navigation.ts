@@ -35,7 +35,8 @@ export const SideNavigationData: SideNavigation [] = [
     badge: null,
     children: []
 
-  }, {
+  },
+/*  {
     icon: 'SearchMajor.svg',
     title: 'Search',
     route: '/admin/search',
@@ -43,8 +44,8 @@ export const SideNavigationData: SideNavigation [] = [
     badge: null,
     children: []
 
-  },
-  {
+  },*/
+/*  {
     icon: 'InventoryMajor.svg',
     title: 'Properties',
     route: '/admin/properties',
@@ -52,7 +53,7 @@ export const SideNavigationData: SideNavigation [] = [
     badge: null,
     children: []
 
-  },
+  },*/
 /*  {
     icon: 'TeamMajor.svg',
     title: 'Leads',
@@ -82,7 +83,7 @@ export const SideNavigationData: SideNavigation [] = [
   },*/
   {
     icon: 'IconsMajor.svg',
-    title: 'Services',
+    title: 'Report',
     route: '/admin/list-of-services',
     isDisabled: false,
     badge: null,
