@@ -1,11 +1,9 @@
 <main id="content" role="main" class="main">
-
-  <a class="d-flex justify-content-start m-4 mb-5" href="/index.html">
-
-    <img style=" width: 12rem"  class="zi-2" src="/savest.png" alt="Image Description">
+  <a class="d-flex justify-content-start p-2 mb-5" href="/index.html">
+    <img style="width: 8rem; height: 8rem" class="zi-2" src="/assets/5-asilde/logo/my-logo.png" alt="Image Description">
   </a>
   <div class="position-fixed top-0 end-0 start-0 bg-img-start"
-       style="height: 32rem; background-image: url(/favicon.ico);">
+       style="height: 32rem; background-image: url(/assets/card-6.svg);">
     <!-- Shape -->
     <div class="shape shape-bottom zi-1">
       <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
@@ -25,23 +23,29 @@
         <div class="card-body">
           <!-- Form -->
           <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()" class="js-validate needs-validation" novalidate>
-            <!--
-
-                        <p>email: {{ profileForm.value.email }}</p>
-                        <p>email2: {{ profileForm.value.email2 }}</p>
-                        <p>password: {{ profileForm.value.password }}</p>
-
-            -->
 
 
 
 
             <div class="text-center">
               <div class="mb-5">
-                <h1 routerLink="/sign-up" routerLinkActive="active" class="display-5">Sign in</h1>
-                <p class=" ">Don't have an account yet?   <a class= "link text-primary lh-xl" >Contact your admin</a>
+                <h1 class="display-5">Sign in</h1>
+                <p class=" ">Don't have an account yet?  <a href="mailto:msjahun@live.com">Contact admin</a> <!--<a type=" nav-item" class= "nav-link lh-xl" routerLink="/sign-up" routerLinkActive="active">Sign up here</a>-->
                 </p>
               </div>
+
+              <div class="d-grid mb-4">
+                <button (click)="googlesignin()" type="button" class="btn btn-white btn-lg" href="#">
+
+                    <span class="d-flex justify-content-center align-items-center">
+                      Sign in with Google
+                    </span>
+                </button>
+
+              </div>
+
+
+              <span class="divider-center text-muted mb-4">OR</span>
             </div>
 
 
@@ -61,13 +65,13 @@
 
                   <span  class="d-flex justify-content-between align-items-center">
                     <span>Password</span>
-                     <a type=" nav-item" class= "nav-link lh-xl" routerLink="/forgot-password" routerLinkActive="active">
+                     <a type=" nav-item" class= "nav-link lh-xl" routerLink="/forget-password" routerLinkActive="active">
                  Forgot Password?</a>
                   </span>
               </label>
 
               <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                <input [type]="showPassword()? 'text':'password'" class="js-toggle-password form-control form-control-lg" name="password"
+                <input type="password" class="js-toggle-password form-control form-control-lg" name="password"
                        formControlName="password" id="signupSrPassword" placeholder="8+ characters required"
                        aria-label="8+ characters required" required minlength="8"
                        data-hs-toggle-password-options='{
@@ -76,7 +80,7 @@
                            "showClass": "bi-eye",
                            "classChangeTarget": "#changePassIcon"
                          }'>
-                <a id="changePassTarget" class="input-group-append input-group-text" (click)="toggleShowPassword()">
+                <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
                   <i  id="changePassIcon" class="bi-eye"></i>
                 </a>
               </div>
@@ -95,11 +99,7 @@
             <!-- End Form Check -->
 
             <div class="d-grid">
-              @if(!isSigningIn()){ <button type="submit" class="btn btn-primary btn-sm">Sign in</button>}
-              @else{  <button class="btn btn-primary me-1 mb-1" type="button" disabled="">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-              </button>}
+              <button type="submit" class="btn btn-primary btn-sm">Sign in</button>
             </div>
           </form>
           <!-- End Form -->
@@ -109,8 +109,8 @@
 
       <!-- Footer -->
       <div class="position-relative text-center zi-1">
-        <small class=" text-body mb-4">This area is for Logging into your School and C.B.T Management System area.
-          <br/> Thank you for  using this  <a class="text-secondary" >School and C.B.T Management System</a></small>
+        <small class=" text-body mb-4">This area is for Niwab staff and partners, if you came here by mistake,
+          navigate to our website using this <a class="text-secondary" [href]="env.websiteLink">Niwab Web </a></small>
       </div>
       <!-- End Footer -->
     </div>

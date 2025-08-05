@@ -11,6 +11,12 @@ export const environment = {
     messagingSenderId: "748481180715",
     measurementId: "G-9QM1QJLQ0M"
   },
+
+  socialMediaLink: {
+    website: 'http://localhost:9183/home',
+    mail: 'https://mail.google.com/mail/u/1/#inbox',
+    drive: '',
+  },
   paystackPublicKey: 'pk_test_de07139d9eacbf37b7d3fd533f82838cfeb58c12',
   emailjsUserId: 'ZLVO8-Ff1dXXnWvZU', // Replace with your actual EmailJS User ID from https://dashboard.emailjs.com/admin/account
   emailjsServiceId: 'service_a3qq2jm', // Verify this matches your EmailJS Service ID

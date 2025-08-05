@@ -1,6 +1,6 @@
 // update-booking.component.ts
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { Firestore, doc, getDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserDisplay, UsersService } from '../../../services/user.service';
@@ -42,7 +42,8 @@ interface BookingData {
     FormsModule,
     NgIf,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    RouterLink
   ]
 })
 export class UpdateBookingComponent implements OnInit {

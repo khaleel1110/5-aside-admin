@@ -225,10 +225,8 @@ export class AddBookingComponent implements OnInit {
       fullName: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
       status: 'Completed',
-      appointmentDetails: {
         firstName: formData.firstName,
         lastName: formData.lastName,
-        email: formData.email,
         phone: formData.phone || '',
         gender: formData.gender,
         location: formData.location,
@@ -239,8 +237,7 @@ export class AddBookingComponent implements OnInit {
         appointmentDate: formData.appointmentDate,
         appointmentStartHour: formData.appointmentStartHour,
         appointmentDuration: formData.appointmentDuration,
-        amount: formData.appointmentDuration * 5000
-      },
+        amount: formData.appointmentDuration * 5000,
       paymentMethod: paymentMethod === 'cash' ? 'Cash/Transfer' : 'Card',
       cashAmount: paymentMethod === 'cash' ? formData.cashAmount : null,
       paymentReference: reference,

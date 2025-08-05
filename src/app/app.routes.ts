@@ -1,23 +1,34 @@
-import { Routes } from '@angular/router';
-import {AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
-const redirectLoggedInToAdmin = () => redirectLoggedInTo(['/admin/dashboard']);
+import {Routes} from '@angular/router';
+import {AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+
+const redirectLoggedInToAdmin = () => redirectLoggedInTo(['/admin']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/authentication']);
-
 export const routes: Routes = [
-
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/admin',
+    redirectTo: '/authentication',
   },
+  {
+    path: 'authentication',
+    loadComponent: () => import('./features/authentication/login/login.component').then(_ => _.LoginComponent),
+    canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToAdmin}
+  },
+  {
+    path: 'sign-up',
+    loadComponent: () => import('./features/authentication/sign-up/sign-up.component').then(_ => _.SignUpComponent),
+
+  },
+
   {
     path: 'admin',
     loadComponent: () => import('./core/layout/layout.component').then(_ => _.LayoutComponent),
     loadChildren: () => import('./core/routes').then(_ => _.routes),
+    canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}
   },
- /* {
-    path: 'authentication',
-    loadComponent: () => import('./features/authentication/log-in/log-in.component').then(_ => _.LogInComponent),
-    canActivate: [AuthGuard], data: { authGuardPipe: redirectLoggedInToAdmin }
+/*  {
+    path: '**',
+    loadComponent: () => import('./features/system/access-denied-forbidden-403/access-denied-forbidden-403.component').then(_ => _.AccessDeniedForbidden403Component)
   },*/
+
 ];

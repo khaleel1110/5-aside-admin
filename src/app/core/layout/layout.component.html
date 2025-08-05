@@ -5,24 +5,24 @@
   <!-- ========== HEADER ========== -->
 
 
-  <header id="header" style="background-color: #f8f8f8"
+<!--  <header id="header" style="background-color: #f8f8f8"
 
           class="d-block d-md-none navbar navbar-expand-md navbar-fixed navbar-height navbar-container navbar-bordered ">
     <div class="navbar-nav-wrap">
       <a class="me-3" routerLink="/" aria-label="Front">
         <img class="" [src]="areaLogo" style="height: 4rem" alt="Logo">
       </a>
-      <!-- End Logo -->
+      &lt;!&ndash; End Logo &ndash;&gt;
 
 
       <div class="navbar-nav-wrap-content-end">
-        <!-- Navbar -->
+        &lt;!&ndash; Navbar &ndash;&gt;
         <ul class="navbar-nav">
-          <!--   <li class="nav-item d-none d-sm-inline-block">
+          &lt;!&ndash;   <li class="nav-item d-none d-sm-inline-block">
                &lt;!&ndash; Notification &ndash;&gt;
                <yex-notification></yex-notification>
                &lt;!&ndash; End Notification &ndash;&gt;
-             </li>-->
+             </li>&ndash;&gt;
 
 
           <li class="nav-item">
@@ -32,8 +32,80 @@
           </li>
 
           <li class="nav-item   d-md-none d-inline-block">
-            <!-- Notification -->
+            &lt;!&ndash; Notification &ndash;&gt;
             <app-menu [sideNavigation]="sideNavigation" [areaLogo]="areaLogo"></app-menu>
+            &lt;!&ndash; End Notification &ndash;&gt;
+          </li>
+        </ul>
+        &lt;!&ndash; End Navbar &ndash;&gt;
+      </div>
+    </div>
+  </header>-->
+  <header id="header" style="background-color: #ffffff"
+
+          class=" navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered ">
+    <div class="navbar-nav-wrap">
+      <a class="me-3 d-block d-xl-none" routerLink="/" aria-label="Front">
+        <img class="" src="/branding_mafa/login_logo.png" height="35" alt="Logo">
+      </a>
+      <!-- End Logo -->
+
+      <div class="navbar-nav-wrap-content-start">
+        <ul class="navbar-nav">
+
+
+          <li class="nav-item d-none d-lg-block">
+
+
+            <div class="mx-5">
+              <button (click)="PreviousRoute()" class="btn btn-soft-primary btn-sm"><i
+                class="bi bi-arrow-left"></i> Back
+              </button>
+            </div>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="navbar-nav-wrap-content-end">
+        <!-- Navbar -->
+        <ul class="navbar-nav">
+
+
+          <li class="nav-item">
+
+         <app-user-profile></app-user-profile>
+
+          </li>
+          <!--    <li class="nav-item d-none d-sm-inline-block">
+                &lt;!&ndash; Notification &ndash;&gt;
+                <yex-notification></yex-notification>
+                &lt;!&ndash; End Notification &ndash;&gt;
+              </li>-->
+
+          <!--     <li class="nav-item d-none d-sm-inline-block">
+                 &lt;!&ndash; Notification &ndash;&gt;
+                 &lt;!&ndash; End Notification &ndash;&gt;
+               </li>
+
+               <li class="nav-item d-none d-sm-inline-block">
+                 &lt;!&ndash; Notification &ndash;&gt;
+                 <button routerLink="/org/org-settings" type="button"
+                         class="btn btn-ghost-secondary btn-icon rounded-circle" id="navbarNotificationsDropdown"
+                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                         data-bs-dropdown-animation>
+                   <img src="/polaris-icons/SettingsMajor.svg" style="height: 1.82rem"/>
+
+                 </button>
+                 &lt;!&ndash; End Notification &ndash;&gt;
+               </li>-->
+
+
+          <li class="nav-item d-xl-none d-inline-block">
+            <!-- Notification -->
             <!-- End Notification -->
           </li>
         </ul>
@@ -41,18 +113,17 @@
       </div>
     </div>
   </header>
-
   <!-- Navbar Vertical -->
   <aside
     style="background-color: #F6F6F7"
     class="js-navbar-vertical-aside navbar  navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl @@if(themeAppearance.sidebarSkin === 'default'){navbar-bordered bg-white} @@if(themeAppearance.sidebarSkin === 'dark'){navbar-dark bg-dark} @@if(themeAppearance.sidebarSkin === 'light'){navbar-light bg-light}">
     <div class="navbar-vertical-container ">
-      <div class="navbar-vertical-footer-offset">
+      <div class="navbar-vertical-footer-offset ">
         <!-- Logo -->
 
         <a class="navbar-brand" routerLink="/" aria-label="Front">
           @if (showAside) {
-            <img class="ms-n2" src="/assets/5-asilde/logo/my-logo.png" style="height: 6rem" alt="Logo">
+            <img class="ms-n2 mt-5" src="/assets/5-asilde/logo/my-logo.png" style="height: 8rem" alt="Logo">
           } @else {
             <img class="ms-n2" src="/assets/5-asilde/logo/my-logo.png" style="height: 5rem" alt="Logo">
           }
@@ -71,7 +142,7 @@
 
 
         <div class="navbar-vertical-content">
-          <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
+          <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav py-5 mt-5">
 
 
 
@@ -80,10 +151,10 @@
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <app-side-bar-navigation-item [sideNavData]="sideNavigationFooter"></app-side-bar-navigation-item>-->
 
-            <span class="dropdown-header mt-4">Integration</span>
+            <span class="dropdown-header py-4 mt-4">Integration</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <div class="nav-item">
-              <a class="nav-link py-1 px-2 me-2"  target="_blank">
+              <a class="nav-link py-1 px-2 me-2" [href]="env.socialMediaLink.website"  target="_blank">
              <span class="nav-icon">
                 <img src="/assets/icons/polaris_icons_new/GlobeMajor.svg" class="pe-1"/>
                  </span>
@@ -96,7 +167,7 @@
               </a>
             </div>
             <div class="nav-item">
-              <a class="nav-link py-1 px-2 me-2"  target="_blank">
+              <a class="nav-link py-1 px-2 me-2" [href]="env.socialMediaLink.drive" target="_blank">
  <span class="nav-icon">
                 <img src="/assets/icons/polaris_icons_new/FolderUpMajor.svg" class="pe-1"/>
                  </span>
@@ -111,7 +182,7 @@
               </a>
             </div>
             <div class="nav-item">
-              <a class="nav-link py-1 px-2 me-2"  target="_blank">
+              <a class="nav-link py-1 px-2 me-2" [href]="env.socialMediaLink.mail"  target="_blank">
  <span class="nav-icon">
                 <img src="/assets/icons/polaris_icons_new/EmailMajor.svg" class="pe-1"/>
                  </span>
@@ -126,7 +197,7 @@
               </a>
             </div>
           </div>
-          <div class="navbar-vertical-footer pe-3 ps-3">
+          <div class="navbar-vertical-footer  pe-3 ps-3">
 
             <app-aside-user-footer></app-aside-user-footer>
 
