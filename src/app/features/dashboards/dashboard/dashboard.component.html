@@ -1,5 +1,5 @@
-<main  id="content"  role="main" class="main ">
-  <div class="container px-6">
+<main id="content" role="main" class="main" style="min-height: 88vh;">
+  <div class="container pt-5" style="margin-top:3rem">
     <div class="content container">
       <!-- Page Header -->
       <div class="page-header">
@@ -48,112 +48,46 @@
       <!-- End Stats -->
       <div class="row">
         <div class="col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
           <div class="card h-100">
-            <!-- Header -->
             <div class="card-header card-header-content-between">
-              <h4 class="card-header-title py-2">Number of Staffs per Department</h4>
-
-              <!-- Dropdown -->
-
-
-              <!-- End Dropdown -->
+              <h4 class=" py-2">Total Number of bookings</h4>
             </div>
-            <!-- End Header -->
-
-            <!-- Body -->
             <div class="card-body">
+              <h1 class=" text-center">{{ totalBookings }}</h1>
             </div>
-            <!-- End Body -->
           </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-        <div class="col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <!-- Header -->
-            <div class="card-header card-header-content-sm-between">
-              <h4 class="card-header-title pb-3 mb-2 mb-sm-0">Comprehensive Overview Of System</h4>
-
-              <!-- Nav -->
-              <!--     <ul class="nav nav-segment nav-fill" id="expensesTab" role="tablist">
-                     <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle">
-                       <a class="nav-link active" href="javascript:;" data-bs-toggle="tab">This Year</a>
-                     </li>
-                     <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle">
-                       <a class="nav-link" href="javascript:;" data-bs-toggle="tab">Last Year</a>
-                     </li>
-                   </ul>-->
-              <!-- End Nav -->
-            </div>
-            <!-- End Header -->
-
-            <!-- Body -->
-            <div class="card-body">
-
-            </div>
-            <!-- End Body -->
-          </div>
-          <!-- End Card -->
         </div>
         <div class="col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
           <div class="card h-100">
-            <!-- Header -->
             <div class="card-header card-header-content-sm-between">
-              <h4 class="card-header-title pb-3 mb-2 mb-sm-0">Comprehensive Overview Of System</h4>
-
-              <!-- Nav -->
-              <!--     <ul class="nav nav-segment nav-fill" id="expensesTab" role="tablist">
-                     <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle">
-                       <a class="nav-link active" href="javascript:;" data-bs-toggle="tab">This Year</a>
-                     </li>
-                     <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle">
-                       <a class="nav-link" href="javascript:;" data-bs-toggle="tab">Last Year</a>
-                     </li>
-                   </ul>-->
-              <!-- End Nav -->
+              <h4 class="card-header-title pb-3 mb-2 mb-sm-0">Number of today Match</h4>
             </div>
-            <!-- End Header -->
-
-            <!-- Body -->
-            <div class="card-body">
-
+            <div class="card-body  text-center">
+              <h1 class=" text-center">{{ todayMatches }}</h1>
             </div>
-            <!-- End Body -->
           </div>
-          <!-- End Card -->
         </div>
         <div class="col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
           <div class="card h-100">
-            <!-- Header -->
             <div class="card-header card-header-content-sm-between">
-              <h4 class="card-header-title pb-3 mb-2 mb-sm-0">Comprehensive Overview Of System</h4>
-
-              <!-- Nav -->
-              <!--     <ul class="nav nav-segment nav-fill" id="expensesTab" role="tablist">
-                     <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle">
-                       <a class="nav-link active" href="javascript:;" data-bs-toggle="tab">This Year</a>
-                     </li>
-                     <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle">
-                       <a class="nav-link" href="javascript:;" data-bs-toggle="tab">Last Year</a>
-                     </li>
-                   </ul>-->
-              <!-- End Nav -->
+              <h4 class="card-header-title pb-3 mb-2 mb-sm-0">Number Of Match To Play</h4>
             </div>
-            <!-- End Header -->
-
-            <!-- Body -->
             <div class="card-body">
+              <h1 class=" text-center">{{ matchesToPlay }}</h1>
 
             </div>
-            <!-- End Body -->
           </div>
-          <!-- End Card -->
         </div>
-        <!-- End Col -->
+        <div class="col-lg-3 mb-3 mb-lg-5">
+          <div class="card h-100">
+            <div class="card-header card-header-content-sm-between">
+              <h4 class="card-header-title pb-3 mb-2 mb-sm-0">Number Of Match's play</h4>
+            </div>
+            <div class="card-body">
+              <h1 class=" text-center">{{ matchesPlayed }}</h1>
+            </div>
+          </div>
+        </div>
       </div>
 
 

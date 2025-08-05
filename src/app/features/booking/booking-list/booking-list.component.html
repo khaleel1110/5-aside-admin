@@ -1,10 +1,10 @@
-
 <main id="content" role="main" class="main" style="min-height: 88vh;">
   <div class="container pt-5" style="margin-top:3rem">
     <div *ngIf="userServices.isLoading()">
       <app-table-loading [showTabsSection]="false"></app-table-loading>
     </div>
     <div *ngIf="!userServices.isLoading()">
+      <!-- Header, Search, and Export Dropdown remain unchanged -->
       <div class="mb-4 pt-3">
         <div class="row align-items-center">
           <div class="col-sm mb-2 mb-sm-0">
@@ -23,7 +23,6 @@
       </div>
 
       <div class="card shadow-none p-3">
-        <!-- Header -->
         <div class="card-header card-header-content-md-between">
           <div class="mb-2 mb-md-0">
             <form (ngSubmit)="onSearch()">
@@ -52,7 +51,7 @@
           </div>
 
           <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
-            <!-- Export Dropdown -->
+            <!-- Export Dropdown (unchanged) -->
             <div class="dropdown" ngbDropdown #dropLearning="ngbDropdown">
               <button
                 class="btn btn-white btn-sm w-100 dropdown-toggle"
@@ -116,152 +115,135 @@
             </div>
 
             <!-- Filter Dropdown -->
-            <div class="dropdown" ngbDropdown #dropFilter="ngbDropdown">
+            <div class="dropdown" ngbDropdown #filterDropdown="ngbDropdown">
               <button
-                class="btn btn-white btn-sm w-100 dropdown-toggle"
+                class="btn btn-outline-primary btn-sm w-100 dropdown-toggle"
                 ngbDropdownAnchor
-                (focus)="dropFilter.open()"
-                role="button"
-                id="usersFilterDropdown"
+                (focus)="filterDropdown.open()"
+                id="filterDropdownButton"
                 aria-expanded="false"
               >
-                <i class="bi-filter me-1"></i> Filter
-                <span class="badge bg-soft-dark text-dark rounded-circle ms-1">2</span>
+                <i class="bi-funnel me-2"></i> Filter Bookings
+                <span *ngIf="activeFilterCount > 0" class="badge bg-soft-dark text-dark rounded-circle ms-1">{{ activeFilterCount }}</span>
               </button>
+
               <div
-                class="dropdown-menu dropdown-menu-sm-end"
+                class="dropdown-menu w-100 p-3"
+                style="max-width: 100%; min-width: 300px;"
                 ngbDropdownMenu
-                aria-labelledby="usersFilterDropdown"
-                style="min-width: 22rem;"
+                aria-labelledby="filterDropdownButton"
               >
-                <div class="card">
-                  <div class="card-header card-header-content-between">
-                    <h5 class="card-header-title">Filter users</h5>
-                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm ms-2">
-                      <i class="bi-x-lg"></i>
+                <form #filterForm="ngForm" (ngSubmit)="applyFilters()">
+                  <!-- Date Range -->
+                  <span class="dropdown-header text-uppercase mb-2 text-muted small">Date Range</span>
+                  <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                      <label for="startDate" classnymi="form-label">Start Date</label>
+                      <input
+                        type="date"
+                        class="form-control form-control-sm"
+                        id="startDate"
+                        name="startDate"
+                        [(ngModel)]="filters.startDate"
+                      />
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                      <label for="endDate" class="form-label">End Date</label>
+                      <input
+                        type="date"
+                        class="form-control form-control-sm"
+                        id="endDate"
+                        name="endDate"
+                        [(ngModel)]="filters.endDate"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Status -->
+                  <span class="dropdown-header text-uppercase mb-2 text-muted small">Status</span>
+                  <div class="mb-3">
+                    <div class="tom-select-custom">
+                      <select
+                        class="form-select form-select-sm"
+                        id="status"
+                        name="status"
+                        [(ngModel)]="filters.status"
+                      >
+                        <option value="">Any Status</option>
+                        <option value="Played">Played</option>
+                        <option value="On Progress">On Progress</option>
+                        <option value="To Do">To Do</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Location -->
+                  <span class="dropdown-header text-uppercase mb-2 text-muted small">Location</span>
+                  <div class="mb-3">
+                    <div class="tom-select-custom">
+                      <select
+                        class="form-select form-select-sm"
+                        id="location"
+                        name="location"
+                        [(ngModel)]="filters.location"
+                      >
+                        <option value="">Any Location</option>
+                        <option value="Abia">Abia</option>
+                        <option value="Adamawa">Adamawa</option>
+                        <option value="Akwa Ibom">Akwa Ibom</option>
+                        <option value="Anambra">Anambra</option>
+                        <option value="Bauchi">Bauchi</option>
+                        <option value="Bayelsa">Bayelsa</option>
+                        <option value="Benue">Benue</option>
+                        <option value="Borno">Borno</option>
+                        <option value="Cross River">Cross River</option>
+                        <option value="Delta">Delta</option>
+                        <option value="Ebonyi">Ebonyi</option>
+                        <option value="Edo">Edo</option>
+                        <option value="Ekiti">Ekiti</option>
+                        <option value="Enugu">Enugu</option>
+                        <option value="FCT">FCT</option>
+                        <option value="Gombe">Gombe</option>
+                        <option value="Imo">Imo</option>
+                        <option value="Jigawa">Jigawa</option>
+                        <option value="Kaduna">Kaduna</option>
+                        <option value="Kano">Kano</option>
+                        <option value="Katsina">Katsina</option>
+                        <option value="Kebbi">Kebbi</option>
+                        <option value="Kogi">Kogi</option>
+                        <option value="Kwara">Kwara</option>
+                        <option value="Lagos">Lagos</option>
+                        <option value="Nasarawa">Nasarawa</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Ogun">Ogun</option>
+                        <option value="Ondo">Ondo</option>
+                        <option value="Osun">Osun</option>
+                        <option value="Oyo">Oyo</option>
+                        <option value="Plateau">Plateau</option>
+                        <option value="Rivers">Rivers</option>
+                        <option value="Sokoto">Sokoto</option>
+                        <option value="Taraba">Taraba</option>
+                        <option value="Yobe">Yobe</option>
+                        <option value="Zamfara">Zamfara</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Apply and Reset Buttons -->
+                  <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-sm flex-grow-1">
+                      <i class="bi-funnel-fill me-1"></i> Apply Filters
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm flex-grow-1" (click)="resetFilters()">
+                      Reset Filters
                     </button>
                   </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="mb-4">
-                        <small class="text-cap text-body">Role</small>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="usersFilterCheckAll"
-                                checked
-                              />
-                              <label class="form-check-label" for="usersFilterCheckAll">All</label>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="usersFilterCheckEmployee"
-                              />
-                              <label class="form-check-label" for="usersFilterCheckEmployee">Employee</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm mb-4">
-                          <small class="text-cap text-body">Position</small>
-                          <div class="tom-select-custom">
-                            <select
-                              class="js-select js-datatable-filter form-select form-select-sm"
-                              data-target-column-index="2"
-                              data-hs-tom-select-options='{
-                                "placeholder": "Any",
-                                "searchInDropdown": false,
-                                "hideSearch": true,
-                                "dropdownWidth": "10rem"
-                              }'
-                            >
-                              <option value="">Any</option>
-                              <option value="Accountant">Accountant</option>
-                              <option value="Co-founder">Co-founder</option>
-                              <option value="Designer">Designer</option>
-                              <option value="Developer">Developer</option>
-                              <option value="Director">Director</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-sm mb-4">
-                          <small class="text-cap text-body">Status</small>
-                          <div class="tom-select-custom">
-                            <select
-                              class="js-select js-datatable-filter form-select form-select-sm"
-                              data-target-column-index="4"
-                              data-hs-tom-select-options='{
-                                "placeholder": "Any status",
-                                "searchInDropdown": false,
-                                "hideSearch": true,
-                                "dropdownWidth": "10rem"
-                              }'
-                            >
-                              <option value="">Any status</option>
-                              <option
-                                value="Completed"
-                                data-option-template='<span class="d-flex align-items-center"><span class="legend-indicator bg-success"></span>Completed</span>'
-                              >
-                                Completed
-                              </option>
-                              <option
-                                value="In progress"
-                                data-option-template='<span class="d-flex align-items-center"><span class="legend-indicator bg-warning"></span>In progress</span>'
-                              >
-                                In progress
-                              </option>
-                              <option
-                                value="To do"
-                                data-option-template='<span class="d-flex align-items-center"><span class="legend-indicator bg-danger"></span>To do</span>'
-                              >
-                                To do
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                          <span class="text-cap text-body">Location</span>
-                          <div class="tom-select-custom">
-                            <select class="js-select form-select">
-                              <option
-                                value="GB"
-                                selected
-                                data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/assets/flags/gb.svg" alt="United Kingdom Flag" /><span class="text-truncate">United Kingdom</span></span>'
-                              >
-                                United Kingdom
-                              </option>
-                              <option
-                                value="US"
-                                data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/assets/flags/us.svg" alt="United States Flag" /><span class="text-truncate">United States</span></span>'
-                              >
-                                United States
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="d-grid">
-                        <a class="btn btn-primary" href="javascript:;">Apply</a>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
             <!-- End Filter Dropdown -->
           </div>
         </div>
-        <!-- End Header -->
 
         <!-- Table -->
         <div class="table-responsive datatable-custom">
@@ -269,13 +251,13 @@
             id="datatable"
             class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
             data-hs-datatables-options='{
-      "columnDefs": [{
-        "targets": [0, 8],
-        "orderable": false
-      }],
-      "order": [],
-      "isResponsive": false
-    }'
+              "columnDefs": [{
+                "targets": [0, 8],
+                "orderable": false
+              }],
+              "order": [],
+              "isResponsive": false
+            }'
           >
             <thead class="thead-light">
             <tr>
@@ -286,6 +268,7 @@
                     type="checkbox"
                     value=""
                     id="datatableCheckAll"
+                    [checked]="allSelected"
                     (change)="selectAll($event)"
                   />
                   <label class="form-check-label" for="datatableCheckAll"></label>
@@ -305,7 +288,13 @@
             <tr *ngFor="let user of paginatedUsers(); trackBy: trackByEmail; let i = index" class="form-control-hover-light">
               <td class="table-column-ps-2">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" />
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [value]="user.id"
+                    [checked]="selectedUsers.has(user.id)"
+                    (change)="toggleSelection(user.id)"
+                  />
                   <label class="form-check-label"></label>
                 </div>
               </td>
@@ -313,11 +302,11 @@
               <td class="table-column-ps-0">
                 <a class="d-flex align-items-center" href="@@autopath/user-profile.html">
                   <div class="avatar avatar-soft-dark avatar-circle">
-              <span class="avatar-initials">{{
-                  user.appointmentDetails.firstName
-                    ? user.appointmentDetails.firstName.substring(0, 2).toUpperCase()
-                    : 'UN'
-                }}</span>
+                      <span class="avatar-initials">{{
+                          user.appointmentDetails.firstName
+                            ? user.appointmentDetails.firstName.substring(0, 2).toUpperCase()
+                            : 'UN'
+                        }}</span>
                   </div>
                   <div class="ms-3">
                     <span class="d-block h5 text-inherit mb-0">{{ user.fullName }}</span>
@@ -332,14 +321,14 @@
               <td>⏰ {{ user.appointmentDetails.appointmentDuration }} hrs</td>
               <td>{{ user.appointmentDetails.teamA }} vs {{ user.appointmentDetails.teamB }}</td>
               <td>
-          <span
-            class="legend-indicator"
-            [ngClass]="{
-              'bg-success': user.status === 'Played',
-              'bg-warning': user.status === 'On Progress',
-              'bg-primary': user.status === 'To Do'
-            }"
-          ></span>{{ user.status }}
+                  <span
+                    class="legend-indicator"
+                    [ngClass]="{
+                      'bg-success': user.status === 'Played',
+                      'bg-warning': user.status === 'On Progress',
+                      'bg-primary': user.status === 'To Do'
+                    }"
+                  ></span>{{ user.status }}
               </td>
               <td> ₦ {{ user.appointmentDetails.amount }}</td>
               <td>
