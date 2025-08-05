@@ -18,6 +18,10 @@ export const routes: Routes = [
     path: 'sign-up',
     loadComponent: () => import('./features/authentication/sign-up/sign-up.component').then(_ => _.SignUpComponent),
 
+  },  {
+    path: 'forget-password',
+    loadComponent: () => import('./features/authentication/forgot-password/forgot-password.component').then(_ => _.ForgotPasswordComponent),
+
   },
 
   {

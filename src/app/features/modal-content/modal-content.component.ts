@@ -38,19 +38,19 @@ import { Router, RouterLink } from '@angular/router';
       <dt class="col-sm-5 text-sm-end">Phone:</dt>
       <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.phone || '-' }}</dd>
 
-      <dt class="col-sm-5 text-sm-end">Appointment:</dt>
-      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.appointment }}</dd>
+ <!--     <dt class="col-sm-5 text-sm-end">Appointment:</dt>
+      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.appointment }}</dd>-->
 
       <dt class="col-sm-5 text-sm-end">Appointment Date:</dt>
       <dd class="col-sm-6 mx-3">
         {{ user.appointmentDetails.appointmentDate | date: 'medium' }}
       </dd>
 
-      <dt class="col-sm-5 text-sm-end">Location:</dt>
-      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.location }}</dd>
+   <!--   <dt class="col-sm-5 text-sm-end">Location:</dt>
+      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.location }}</dd>-->
 
-      <dt class="col-sm-5 text-sm-end">Local Government:</dt>
-      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.localGovernment || '-' }}</dd>
+    <!--  <dt class="col-sm-5 text-sm-end">Local Government:</dt>
+      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.localGovernment || '-' }}</dd>-->
 
       <dt class="col-sm-5 text-sm-end">Address:</dt>
       <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.address || '-' }}</dd>

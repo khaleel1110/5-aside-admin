@@ -1,6 +1,5 @@
-// update-booking.component.ts
 import { Component, inject, OnInit } from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Firestore, doc, getDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserDisplay, UsersService } from '../../../services/user.service';
@@ -21,7 +20,7 @@ interface BookingData {
   address?: string;
   teamA?: string;
   teamB?: string;
-  appointmentDate?: Timestamp;
+  appointmentDate?: Timestamp | Date; // Allow Date or Timestamp
   appointmentStartHour?: number;
   appointmentDuration?: number;
   amount?: number;
@@ -58,7 +57,31 @@ export class UpdateBookingComponent implements OnInit {
   isProcessingPayment = false;
   isDeleting = false;
 
-  profileForm!: FormGroup;
+  profileForm: FormGroup = new FormGroup({}); // Initialize with empty FormGroup
+
+  constructor() {
+    // Initialize profileForm with default controls to prevent template errors
+    this.profileForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl(''),
+      gender: new FormControl('', Validators.required),
+      location: new FormControl('', Validators.required),
+      localGovernment: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      teamA: new FormControl('', Validators.required),
+      teamB: new FormControl('', Validators.required),
+      appointmentDate: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)
+      ]),
+      appointmentStartHour: new FormControl<number | null>(null, Validators.required),
+      appointmentDuration: new FormControl<number | null>(null, Validators.required),
+      paymentMethod: new FormControl('', Validators.required),
+      cashAmount: new FormControl<number | null>({ value: null, disabled: true })
+    });
+  }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
@@ -99,39 +122,30 @@ export class UpdateBookingComponent implements OnInit {
       return;
     }
 
-    const formattedDate = this.user.appointmentDate?.toDate().toISOString().split('T')[0] || '';
+    // Safely handle appointmentDate
+    let formattedDate = '';
+    if (this.user.appointmentDate instanceof Timestamp) {
+      formattedDate = this.user.appointmentDate.toDate().toISOString().split('T')[0];
+    } else if (this.user.appointmentDate instanceof Date) {
+      formattedDate = this.user.appointmentDate.toISOString().split('T')[0];
+    }
 
-    this.profileForm = new FormGroup({
-      firstName: new FormControl(this.user.firstName || '', Validators.required),
-      lastName: new FormControl(this.user.lastName || '', Validators.required),
-      email: new FormControl(this.user.email || '', [Validators.required, Validators.email]),
-      phone: new FormControl(this.user.phone || ''),
-      gender: new FormControl(this.user.gender || '', Validators.required),
-      location: new FormControl(this.user.location || '', Validators.required),
-      localGovernment: new FormControl(this.user.localGovernment || '', Validators.required),
-      address: new FormControl(this.user.address || '', Validators.required),
-      teamA: new FormControl(this.user.teamA || '', Validators.required),
-      teamB: new FormControl(this.user.teamB || '', Validators.required),
-      appointmentDate: new FormControl(formattedDate, [
-        Validators.required,
-        Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)
-      ]),
-      appointmentStartHour: new FormControl<number | null>(
-        this.user.appointmentStartHour ?? null,
-        Validators.required
-      ),
-      appointmentDuration: new FormControl<number | null>(
-        this.user.appointmentDuration ?? null,
-        Validators.required
-      ),
-      paymentMethod: new FormControl(
-        this.user.paymentMethod === 'Cash/Transfer' ? 'cash' : this.user.paymentMethod || '',
-        Validators.required
-      ),
-      cashAmount: new FormControl<number | null>({
-        value: this.user.cashAmount ?? null,
-        disabled: this.user.paymentMethod !== 'Cash/Transfer'
-      })
+    this.profileForm.patchValue({
+      firstName: this.user.firstName || '',
+      lastName: this.user.lastName || '',
+      email: this.user.email || '',
+      phone: this.user.phone || '',
+      gender: this.user.gender || '',
+      location: this.user.location || '',
+      localGovernment: this.user.localGovernment || '',
+      address: this.user.address || '',
+      teamA: this.user.teamA || '',
+      teamB: this.user.teamB || '',
+      appointmentDate: formattedDate,
+      appointmentStartHour: this.user.appointmentStartHour ?? null,
+      appointmentDuration: this.user.appointmentDuration ?? null,
+      paymentMethod: this.user.paymentMethod === 'Cash/Transfer' ? 'cash' : this.user.paymentMethod || '',
+      cashAmount: this.user.paymentMethod === 'Cash/Transfer' ? this.user.cashAmount ?? null : null
     });
 
     this.setupPaymentMethodControls();
