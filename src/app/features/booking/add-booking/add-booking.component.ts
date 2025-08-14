@@ -30,7 +30,9 @@ import { FormLoadingComponent } from '../../form-loading/form-loading.component'
     RouterLink,
     RouterLinkActive,
     TableLoadingComponent,
-    FormLoadingComponent
+    FormLoadingComponent,
+    NgIf,
+    ReactiveFormsModule
   ],
   templateUrl: './add-booking.component.html',
   styleUrls: ['./add-booking.component.scss']
@@ -51,6 +53,7 @@ export class AddBookingComponent implements OnInit {
       phone: [''],
       gender: ['', Validators.required],
       location: ['', Validators.required],
+      event: ['', Validators.required],
       localGovernment: ['', Validators.required],
       address: ['', Validators.required],
       teamA: ['', Validators.required],
@@ -213,6 +216,7 @@ export class AddBookingComponent implements OnInit {
       localGovernment: string;
       address: string;
       teamA: string;
+      event: string;
       teamB: string;
       appointmentDate: string;
       appointmentStartHour: number;
@@ -232,6 +236,7 @@ export class AddBookingComponent implements OnInit {
         location: formData.location,
         localGovernment: formData.localGovernment,
         address: formData.address,
+        event: formData.event,
         teamA: formData.teamA,
         teamB: formData.teamB,
         appointmentDate: formData.appointmentDate,

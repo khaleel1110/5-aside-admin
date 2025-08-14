@@ -20,6 +20,7 @@ interface BookingData {
   address?: string;
   teamA?: string;
   teamB?: string;
+  event?: string;
   appointmentDate?: Timestamp | Date; // Allow Date or Timestamp
   appointmentStartHour?: number;
   appointmentDuration?: number;
@@ -68,6 +69,7 @@ export class UpdateBookingComponent implements OnInit {
       phone: new FormControl(''),
       gender: new FormControl('', Validators.required),
       location: new FormControl('', Validators.required),
+      event: new FormControl('', Validators.required),
       localGovernment: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       teamA: new FormControl('', Validators.required),
@@ -137,6 +139,7 @@ export class UpdateBookingComponent implements OnInit {
       phone: this.user.phone || '',
       gender: this.user.gender || '',
       location: this.user.location || '',
+      event: this.user.event || '',
       localGovernment: this.user.localGovernment || '',
       address: this.user.address || '',
       teamA: this.user.teamA || '',

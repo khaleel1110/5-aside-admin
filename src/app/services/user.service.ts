@@ -22,6 +22,7 @@ export interface AppointmentDetails {
   lastName: string;
   localGovernment: string;
   location: string;
+  event: string;
   paymentReference: string;
   phone: string;
   phoneType: string;
@@ -37,6 +38,7 @@ export interface UserDisplay {
   country: string;
   status: Status['value'];
   role: string;
+  event: string;
   phone?: string;
   organization?: string;
   department?: string;
@@ -116,6 +118,7 @@ export class UsersService {
               email: item.email || 'N/A',
               firstName: item.firstName || '',
               gender: item.gender || '',
+              event: item.event || '',
               lastName: item.lastName || '',
               localGovernment: item.localGovernment || '',
               location: item.location || 'Unknown',

@@ -54,6 +54,8 @@ import { Router, RouterLink } from '@angular/router';
 
       <dt class="col-sm-5 text-sm-end">Address:</dt>
       <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.address || '-' }}</dd>
+      <dt class="col-sm-5 text-sm-end">Match Category:</dt>
+      <dd class="col-sm-6 mx-3">{{ user.appointmentDetails.event || '-' }}</dd>
 
       <dt class="col-sm-5 text-sm-end">Amount:</dt>
       <dd class="col-sm-6 mx-3 "> ₦ {{ user.appointmentDetails.amount  }}</dd>

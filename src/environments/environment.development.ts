@@ -15,6 +15,7 @@ export const environment = {
   socialMediaLink: {
     website: 'http://localhost:9183/home',
     mail: 'https://mail.google.com/mail/u/1/#inbox',
+    paystackDashboard: 'https://dashboard.paystack.com/#/dashboard',
     drive: '',
   },
   paystackPublicKey: 'pk_test_de07139d9eacbf37b7d3fd533f82838cfeb58c12',

@@ -13,6 +13,7 @@ export const environment = {
   socialMediaLink: {
     website: 'http://localhost:9183/home',
     mail: 'https://mail.google.com/mail/u/1/#inbox',
+    paystackDashboard: 'https://dashboard.paystack.com/#/dashboard',
     drive: '',
   },
 

@@ -170,6 +170,37 @@
                 </div>
               </div>
             </div>
+            <!-- Match category-->
+            <div class="row mb-4">
+              <label for="event" class="col-sm-3 col-form-label form-label">Match Category</label>
+              <div class="col-sm-9">
+                <select
+                  class="form-select"
+                  id="event"
+                  formControlName="event"
+                  [ngClass]="{
+        'is-invalid': profileForm.get('event')?.invalid && profileForm.get('event')?.touched
+      }"
+                >
+                  <option value="" disabled selected>Select match type</option>
+                  <option value="even-match">Even Match</option>
+                  <option value="normal-match">Normal Match</option>
+                  <option value="competition">Competition</option>
+                  <option value="friendly-match">Friendly Match</option>
+                  <option value="charity-match">Charity Match</option>
+                </select>
+
+                <div
+                  *ngIf="profileForm.get('event')?.invalid && profileForm.get('event')?.touched"
+                  class="invalid-feedback"
+                >
+      <span *ngIf="profileForm.get('event')?.errors?.['required']">
+        Match category is required
+      </span>
+                </div>
+              </div>
+            </div>
+
             <!-- Team A -->
             <div class="row mb-4">
               <label class="col-sm-3 col-form-label form-label">Your Team</label>
