@@ -36,20 +36,21 @@
           <h4 class="card-header-title">Booking Details</h4>
         </div>
         <div class="card-body">
-          <form [formGroup]="profileForm" id="bookingForm">
-            <!-- Rest of the form remains unchanged -->
+          <form [formGroup]="profileForm" id="bookingForm" aria-live="polite">
             <!-- Full Name -->
             <div class="row mb-4">
               <label for="firstName" class="col-sm-3 col-form-label form-label">Full name <i class="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Displayed on public forums."></i></label>
               <div class="col-sm-9">
                 <div class="input-group">
-                  <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Clarice" aria-label="Clarice" [ngClass]="{'is-invalid': profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched}">
-                  <div *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched" class="invalid-feedback">
+                  <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Clarice" aria-label="Clarice" aria-describedby="firstNameError" [ngClass]="{'is-invalid': profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched}">
+                  <div *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched" id="firstNameError" class="invalid-feedback">
                     <span *ngIf="profileForm.get('firstName')?.errors?.['required']">First name is required</span>
+                    <span *ngIf="profileForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters</span>
                   </div>
-                  <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Boone" aria-label="Boone" [ngClass]="{'is-invalid': profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched}">
-                  <div *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched" class="invalid-feedback">
+                  <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Boone" aria-label="Boone" aria-describedby="lastNameError" [ngClass]="{'is-invalid': profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched}">
+                  <div *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched" id="lastNameError" class="invalid-feedback">
                     <span *ngIf="profileForm.get('lastName')?.errors?.['required']">Last name is required</span>
+                    <span *ngIf="profileForm.get('lastName')?.errors?.['minlength']">Last name must be at least 2 characters</span>
                   </div>
                 </div>
               </div>
@@ -58,8 +59,8 @@
             <div class="row mb-4">
               <label for="email" class="col-sm-3 col-form-label form-label">Email</label>
               <div class="col-sm-9">
-                <input type="email" class="form-control" id="email" formControlName="email" placeholder="clarice@example.com" aria-label="clarice@example.com" [ngClass]="{'is-invalid': profileForm.get('email')?.invalid && profileForm.get('email')?.touched}">
-                <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="invalid-feedback">
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="clarice@example.com" aria-label="clarice@example.com" aria-describedby="emailError" [ngClass]="{'is-invalid': profileForm.get('email')?.invalid && profileForm.get('email')?.touched}">
+                <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" id="emailError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('email')?.errors?.['required']">Email is required</span>
                   <span *ngIf="profileForm.get('email')?.errors?.['email']">Invalid email format</span>
                 </div>
@@ -69,7 +70,12 @@
             <div class="row mb-4">
               <label for="phone" class="col-sm-3 col-form-label form-label">Phone</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="07012345678 or +2347012345678" aria-label="07012345678 or +2347012345678" aria-describedby="phoneError" [ngClass]="{'is-invalid': profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched}">
+                  <div *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched" id="phoneError" class="invalid-feedback">
+                    <span *ngIf="profileForm.get('phone')?.errors?.['pattern']">Invalid Nigerian phone format (e.g., 07012345678 or +2347012345678)</span>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Gender -->
@@ -79,145 +85,96 @@
                 <div class="input-group input-group-md-down-break">
                   <label class="form-control" for="genderTypeRadio1">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" id="genderTypeRadio1" value="Male" formControlName="gender">
+                      <input type="radio" class="form-check-input" id="genderTypeRadio1" value="Male" formControlName="gender" aria-describedby="genderError">
                       <span class="form-check-label">Male</span>
                     </span>
                   </label>
                   <label class="form-control" for="genderTypeRadio2">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" id="genderTypeRadio2" value="Female" formControlName="gender">
+                      <input type="radio" class="form-check-input" id="genderTypeRadio2" value="Female" formControlName="gender" aria-describedby="genderError">
                       <span class="form-check-label">Female</span>
                     </span>
                   </label>
                   <label class="form-control" for="genderTypeRadio3">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" id="genderTypeRadio3" value="Other" formControlName="gender">
+                      <input type="radio" class="form-check-input" id="genderTypeRadio3" value="Other" formControlName="gender" aria-describedby="genderError">
                       <span class="form-check-label">Other</span>
                     </span>
                   </label>
                 </div>
-                <div *ngIf="profileForm.get('gender')?.invalid && profileForm.get('gender')?.touched" class="invalid-feedback">
+                <div *ngIf="profileForm.get('gender')?.invalid && profileForm.get('gender')?.touched" id="genderError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('gender')?.errors?.['required']">Gender is required</span>
                 </div>
               </div>
             </div>
-            <!-- Location -->
-            <div class="row mb-4">
-              <label for="location" class="col-sm-3 col-form-label form-label">Location</label>
-              <div class="col-sm-9">
-                <select class="form-select" id="location" formControlName="location" [ngClass]="{'is-invalid': profileForm.get('location')?.invalid && profileForm.get('location')?.touched}">
-                  <option value="" disabled>Select a state</option>
-                  <option value="Abia">Abia</option>
-                  <option value="Adamawa">Adamawa</option>
-                  <option value="Akwa Ibom">Akwa Ibom</option>
-                  <option value="Anambra">Anambra</option>
-                  <option value="Bauchi">Bauchi</option>
-                  <option value="Bayelsa">Bayelsa</option>
-                  <option value="Benue">Benue</option>
-                  <option value="Borno">Borno</option>
-                  <option value="Cross River">Cross River</option>
-                  <option value="Delta">Delta</option>
-                  <option value="Ebonyi">Ebonyi</option>
-                  <option value="Edo">Edo</option>
-                  <option value="Ekiti">Ekiti</option>
-                  <option value="Enugu">Enugu</option>
-                  <option value="FCT">FCT</option>
-                  <option value="Gombe">Gombe</option>
-                  <option value="Imo">Imo</option>
-                  <option value="Jigawa">Jigawa</option>
-                  <option value="Kaduna">Kaduna</option>
-                  <option value="Kano">Kano</option>
-                  <option value="Katsina">Katsina</option>
-                  <option value="Kebbi">Kebbi</option>
-                  <option value="Kogi">Kogi</option>
-                  <option value="Kwara">Kwara</option>
-                  <option value="Lagos">Lagos</option>
-                  <option value="Nasarawa">Nasarawa</option>
-                  <option value="Niger">Niger</option>
-                  <option value="Ogun">Ogun</option>
-                  <option value="Ondo">Ondo</option>
-                  <option value="Osun">Osun</option>
-                  <option value="Oyo">Oyo</option>
-                  <option value="Plateau">Plateau</option>
-                  <option value="Rivers">Rivers</option>
-                  <option value="Sokoto">Sokoto</option>
-                  <option value="Taraba">Taraba</option>
-                  <option value="Yobe">Yobe</option>
-                  <option value="Zamfara">Zamfara</option>
-                </select>
-                <div *ngIf="profileForm.get('location')?.invalid && profileForm.get('location')?.touched" class="invalid-feedback">
-                  <span *ngIf="profileForm.get('location')?.errors?.['required']">Location is required</span>
-                </div>
-              </div>
-            </div>
-            <!-- Local Government -->
-            <div class="row mb-4">
-              <label class="col-sm-3 col-form-label form-label">Local Government</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="localGovernment" placeholder="L.G.A" aria-label="Local government" [ngClass]="{'is-invalid': profileForm.get('localGovernment')?.invalid && profileForm.get('localGovernment')?.touched}">
-                <div *ngIf="profileForm.get('localGovernment')?.invalid && profileForm.get('localGovernment')?.touched" class="invalid-feedback">
-                  <span *ngIf="profileForm.get('localGovernment')?.errors?.['required']">Local government is required</span>
-                </div>
-              </div>
-            </div>
+
             <!-- Address -->
             <div class="row mb-4">
               <label for="address" class="col-sm-3 col-form-label form-label">Address line</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="address" formControlName="address" placeholder="Your address" aria-label="Your address" [ngClass]="{'is-invalid': profileForm.get('address')?.invalid && profileForm.get('address')?.touched}">
-                <div *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched" class="invalid-feedback">
+                <input type="text" class="form-control" id="address" formControlName="address" placeholder="Your address" aria-label="Your address" aria-describedby="addressError" [ngClass]="{'is-invalid': profileForm.get('address')?.invalid && profileForm.get('address')?.touched}">
+                <div *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched" id="addressError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('address')?.errors?.['required']">Address is required</span>
+                  <span *ngIf="profileForm.get('address')?.errors?.['minlength']">Address must be at least 5 characters</span>
                 </div>
               </div>
             </div>
-            <!-- Match category-->
+            <!-- Hostel -->
+            <div class="row mb-4">
+              <label for="hostel" class="col-sm-3 col-form-label form-label">Hostel</label>
+              <div class="col-sm-9">
+                <select class="form-select" id="hostel" formControlName="hostel" [ngClass]="{'is-invalid': profileForm.get('hostel')?.invalid && profileForm.get('hostel')?.touched}">
+                  <option value="" disabled selected>Select Hostel</option>
+                  <option value="area-1">Area 1</option>
+                  <option value="area-2">Area 2</option>
+                  <option value="area-3">Area 3</option>
+                  <option value="area-4">Area 4</option>
+                  <option value="kano-hall">Kano Hall</option>
+                  <option value="dangote">Dangote</option>
+                  <option value="up-campus">Up-campus</option>
+                  <option value="others">Others</option>
+                </select>
+                <div *ngIf="profileForm.get('hostel')?.invalid && profileForm.get('hostel')?.touched" class="invalid-feedback">
+                  <span *ngIf="profileForm.get('hostel')?.errors?.['required']">Hostel is required</span>
+                </div>
+              </div>
+            </div>
+            <!-- Match Category -->
             <div class="row mb-4">
               <label for="event" class="col-sm-3 col-form-label form-label">Match Category</label>
               <div class="col-sm-9">
-                <select
-                  class="form-select"
-                  id="event"
-                  formControlName="event"
-                  [ngClass]="{
-        'is-invalid': profileForm.get('event')?.invalid && profileForm.get('event')?.touched
-      }"
-                >
+                <select class="form-select" id="event" formControlName="event" [ngClass]="{'is-invalid': profileForm.get('event')?.invalid && profileForm.get('event')?.touched}">
                   <option value="" disabled selected>Select match type</option>
-                  <option value="even-match">Even Match</option>
+                  <option value="even-match">Event Match</option>
                   <option value="normal-match">Normal Match</option>
                   <option value="competition">Competition</option>
                   <option value="friendly-match">Friendly Match</option>
                   <option value="charity-match">Charity Match</option>
                 </select>
-
-                <div
-                  *ngIf="profileForm.get('event')?.invalid && profileForm.get('event')?.touched"
-                  class="invalid-feedback"
-                >
-      <span *ngIf="profileForm.get('event')?.errors?.['required']">
-        Match category is required
-      </span>
+                <div *ngIf="profileForm.get('event')?.invalid && profileForm.get('event')?.touched" class="invalid-feedback">
+                  <span *ngIf="profileForm.get('event')?.errors?.['required']">Match category is required</span>
                 </div>
               </div>
             </div>
-
             <!-- Team A -->
             <div class="row mb-4">
-              <label class="col-sm-3 col-form-label form-label">Your Team</label>
+              <label for="teamA" class="col-sm-3 col-form-label form-label">Your Team</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="teamA" placeholder="Team A" aria-label="Team A" [ngClass]="{'is-invalid': profileForm.get('teamA')?.invalid && profileForm.get('teamA')?.touched}">
-                <div *ngIf="profileForm.get('teamA')?.invalid && profileForm.get('teamA')?.touched" class="invalid-feedback">
+                <input type="text" class="form-control" id="teamA" formControlName="teamA" placeholder="Team A" aria-label="Team A" aria-describedby="teamAError" [ngClass]="{'is-invalid': profileForm.get('teamA')?.invalid && profileForm.get('teamA')?.touched}">
+                <div *ngIf="profileForm.get('teamA')?.invalid && profileForm.get('teamA')?.touched" id="teamAError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('teamA')?.errors?.['required']">Team A is required</span>
+                  <span *ngIf="profileForm.get('teamA')?.errors?.['minlength']">Team A must be at least 2 characters</span>
                 </div>
               </div>
             </div>
             <!-- Team B -->
             <div class="row mb-4">
-              <label class="col-sm-3 col-form-label form-label">Opponent Team</label>
+              <label for="teamB" class="col-sm-3 col-form-label form-label">Opponent Team</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="teamB" placeholder="Team B" aria-label="Team B" [ngClass]="{'is-invalid': profileForm.get('teamB')?.invalid && profileForm.get('teamB')?.touched}">
-                <div *ngIf="profileForm.get('teamB')?.invalid && profileForm.get('teamB')?.touched" class="invalid-feedback">
+                <input type="text" class="form-control" id="teamB" formControlName="teamB" placeholder="Team B" aria-label="Team B" aria-describedby="teamBError" [ngClass]="{'is-invalid': profileForm.get('teamB')?.invalid && profileForm.get('teamB')?.touched}">
+                <div *ngIf="profileForm.get('teamB')?.invalid && profileForm.get('teamB')?.touched" id="teamBError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('teamB')?.errors?.['required']">Team B is required</span>
+                  <span *ngIf="profileForm.get('teamB')?.errors?.['minlength']">Team B must be at least 2 characters</span>
                 </div>
               </div>
             </div>
@@ -225,21 +182,16 @@
             <div class="row mb-4">
               <label for="appointmentDate" class="col-sm-3 col-form-label form-label">Appointment Date & Time</label>
               <div class="col-sm-9">
-                <app-date
-                  (appointmentChange)="onAppointmentChange($event)"
-                  [initialDate]="profileForm.get('appointmentDate')?.value ?? ''"
-                  [initialStartHour]="profileForm.get('appointmentStartHour')?.value ?? null"
-                  [initialDuration]="profileForm.get('appointmentDuration')?.value ?? null"
-                ></app-date>
-                <div *ngIf="profileForm.get('appointmentDate')?.invalid && profileForm.get('appointmentDate')?.touched" class="invalid-feedback">
+                <app-date (appointmentChange)="onAppointmentChange($event)" [initialDate]="profileForm.get('appointmentDate')?.value ?? ''" [initialStartHour]="profileForm.get('appointmentStartHour')?.value ?? null" [initialDuration]="profileForm.get('appointmentDuration')?.value ?? null"></app-date>
+                <div *ngIf="profileForm.get('appointmentDate')?.invalid && profileForm.get('appointmentDate')?.touched" id="appointmentDateError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('appointmentDate')?.errors?.['required']">Appointment date is required</span>
-                  <span *ngIf="profileForm.get('appointmentDate')?.errors?.['pattern']">Date must be in YYYY-MM-DD format</span>
                 </div>
-                <div *ngIf="profileForm.get('appointmentStartHour')?.invalid && profileForm.get('appointmentStartHour')?.touched" class="invalid-feedback">
+                <div *ngIf="profileForm.get('appointmentStartHour')?.invalid && profileForm.get('appointmentStartHour')?.touched" id="appointmentStartHourError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('appointmentStartHour')?.errors?.['required']">Appointment start time is required</span>
                 </div>
-                <div *ngIf="profileForm.get('appointmentDuration')?.invalid && profileForm.get('appointmentDuration')?.touched" class="invalid-feedback">
+                <div *ngIf="profileForm.get('appointmentDuration')?.invalid && profileForm.get('appointmentDuration')?.touched" id="appointmentDurationError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('appointmentDuration')?.errors?.['required']">Appointment duration is required</span>
+                  <span *ngIf="profileForm.get('appointmentDuration')?.errors?.['min'] || profileForm.get('appointmentDuration')?.errors?.['max']">Duration must be between 1 and 8 hours</span>
                 </div>
               </div>
             </div>
@@ -247,12 +199,9 @@
             <div class="row mb-4">
               <label class="col-sm-3 col-form-label form-label">Total Amount</label>
               <div class="col-sm-9">
-                <p class="form-text" *ngIf="profileForm.get('appointmentDuration')?.value as duration; else noDuration">
-                  {{ duration * 5000 | number }} NGN
+                <p class="form-text">
+                  {{ profileForm.get('appointmentDuration')?.value ? (profileForm.get('appointmentDuration')?.value * 5000 | number) + ' NGN' : 'Select duration to see amount' }}
                 </p>
-                <ng-template #noDuration>
-                  <p class="form-text">Select duration to see amount</p>
-                </ng-template>
               </div>
             </div>
             <!-- Payment Method -->
@@ -262,18 +211,18 @@
                 <div class="input-group input-group-md-down-break">
                   <label class="form-control" for="paymentMethodCard">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" id="paymentMethodCard" value="card" formControlName="paymentMethod">
+                      <input type="radio" class="form-check-input" id="paymentMethodCard" value="card" formControlName="paymentMethod" aria-describedby="paymentMethodError">
                       <span class="form-check-label">Card (Paystack)</span>
                     </span>
                   </label>
                   <label class="form-control" for="paymentMethodCash">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" id="paymentMethodCash" value="cash" formControlName="paymentMethod">
+                      <input type="radio" class="form-check-input" id="paymentMethodCash" value="cash" formControlName="paymentMethod" aria-describedby="paymentMethodError">
                       <span class="form-check-label">Cash/Transfer</span>
                     </span>
                   </label>
                 </div>
-                <div *ngIf="profileForm.get('paymentMethod')?.invalid && profileForm.get('paymentMethod')?.touched" class="invalid-feedback">
+                <div *ngIf="profileForm.get('paymentMethod')?.invalid && profileForm.get('paymentMethod')?.touched" id="paymentMethodError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('paymentMethod')?.errors?.['required']">Payment method is required</span>
                 </div>
               </div>
@@ -282,8 +231,8 @@
             <div class="row mb-4" *ngIf="profileForm.get('paymentMethod')?.value === 'cash'">
               <label for="cashAmount" class="col-sm-3 col-form-label form-label">Amount Paid</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" id="cashAmount" formControlName="cashAmount" placeholder="Enter amount in NGN" aria-label="Amount in NGN" [ngClass]="{'is-invalid': profileForm.get('cashAmount')?.invalid && profileForm.get('cashAmount')?.touched}">
-                <div *ngIf="profileForm.get('cashAmount')?.invalid && profileForm.get('cashAmount')?.touched" class="invalid-feedback">
+                <input type="number" class="form-control" id="cashAmount" formControlName="cashAmount" placeholder="Enter amount in NGN" aria-label="Amount in NGN" aria-describedby="cashAmountError" [ngClass]="{'is-invalid': profileForm.get('cashAmount')?.invalid && profileForm.get('cashAmount')?.touched}">
+                <div *ngIf="profileForm.get('cashAmount')?.invalid && profileForm.get('cashAmount')?.touched" id="cashAmountError" class="invalid-feedback">
                   <span *ngIf="profileForm.get('cashAmount')?.errors?.['required']">Amount is required</span>
                   <span *ngIf="profileForm.get('cashAmount')?.errors?.['min']">Amount must be greater than or equal to 0</span>
                 </div>
@@ -303,7 +252,4 @@
       <div class="text-center">
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading booking...
-      </div>
-    </ng-template>
-  </div>
-</main>
+      <

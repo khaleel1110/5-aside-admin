@@ -81,7 +81,7 @@ export const SideNavigationData: SideNavigation [] = [
     children: []
 
   },*/
-  {
+ /* {
     icon: 'IconsMajor.svg',
     title: 'Report',
     route: '/admin/list-of-services',
@@ -89,7 +89,7 @@ export const SideNavigationData: SideNavigation [] = [
     badge: null,
     children: []
 
-  },
+  },*/
   {
     icon: 'LegalMajor.svg',
     title: 'Blogs',

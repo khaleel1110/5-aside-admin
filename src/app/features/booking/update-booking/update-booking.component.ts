@@ -15,12 +15,11 @@ interface BookingData {
   email?: string;
   phone?: string;
   gender?: string;
-  location?: string;
-  localGovernment?: string;
   address?: string;
   teamA?: string;
   teamB?: string;
   event?: string;
+  hostel?: string;
   appointmentDate?: Timestamp | Date; // Allow Date or Timestamp
   appointmentStartHour?: number;
   appointmentDuration?: number;
@@ -68,9 +67,8 @@ export class UpdateBookingComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl(''),
       gender: new FormControl('', Validators.required),
-      location: new FormControl('', Validators.required),
       event: new FormControl('', Validators.required),
-      localGovernment: new FormControl('', Validators.required),
+      hostel: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       teamA: new FormControl('', Validators.required),
       teamB: new FormControl('', Validators.required),
@@ -124,7 +122,6 @@ export class UpdateBookingComponent implements OnInit {
       return;
     }
 
-    // Safely handle appointmentDate
     let formattedDate = '';
     if (this.user.appointmentDate instanceof Timestamp) {
       formattedDate = this.user.appointmentDate.toDate().toISOString().split('T')[0];
@@ -138,10 +135,9 @@ export class UpdateBookingComponent implements OnInit {
       email: this.user.email || '',
       phone: this.user.phone || '',
       gender: this.user.gender || '',
-      location: this.user.location || '',
-      event: this.user.event || '',
-      localGovernment: this.user.localGovernment || '',
       address: this.user.address || '',
+      hostel: this.user.hostel || '',
+      event: this.user.event || '',
       teamA: this.user.teamA || '',
       teamB: this.user.teamB || '',
       appointmentDate: formattedDate,
@@ -170,7 +166,6 @@ export class UpdateBookingComponent implements OnInit {
       cashAmountControl?.updateValueAndValidity();
     });
 
-    // Trigger initial validation
     paymentMethodControl?.updateValueAndValidity();
   }
 

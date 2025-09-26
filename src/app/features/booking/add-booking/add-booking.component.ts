@@ -1,4 +1,3 @@
-
 import { Component, inject, OnInit } from '@angular/core';
 import { DatePipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -30,9 +29,7 @@ import { FormLoadingComponent } from '../../form-loading/form-loading.component'
     RouterLink,
     RouterLinkActive,
     TableLoadingComponent,
-    FormLoadingComponent,
-    NgIf,
-    ReactiveFormsModule
+    FormLoadingComponent
   ],
   templateUrl: './add-booking.component.html',
   styleUrls: ['./add-booking.component.scss']
@@ -47,20 +44,19 @@ export class AddBookingComponent implements OnInit {
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.profileForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
+      phone: ['', [Validators.pattern(/^(?:\+234|0)[789]\d{9}$/)]],
       gender: ['', Validators.required],
-      location: ['', Validators.required],
+      address: ['', [Validators.required, Validators.minLength(5)]],
+      hostel: ['', Validators.required],
       event: ['', Validators.required],
-      localGovernment: ['', Validators.required],
-      address: ['', Validators.required],
-      teamA: ['', Validators.required],
-      teamB: ['', Validators.required],
+      teamA: ['', [Validators.required, Validators.minLength(2)]],
+      teamB: ['', [Validators.required, Validators.minLength(2)]],
       appointmentDate: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
       appointmentStartHour: [null, Validators.required],
-      appointmentDuration: [null, Validators.required],
+      appointmentDuration: [null, [Validators.required, Validators.min(1), Validators.max(8)]],
       paymentMethod: ['', Validators.required],
       cashAmount: [{ value: null, disabled: true }, [Validators.min(0)]]
     });
@@ -212,11 +208,10 @@ export class AddBookingComponent implements OnInit {
       email: string;
       phone: string;
       gender: string;
-      location: string;
-      localGovernment: string;
       address: string;
-      teamA: string;
+      hostel: string;
       event: string;
+      teamA: string;
       teamB: string;
       appointmentDate: string;
       appointmentStartHour: number;
@@ -229,20 +224,19 @@ export class AddBookingComponent implements OnInit {
       fullName: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
       status: 'Completed',
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        phone: formData.phone || '',
-        gender: formData.gender,
-        location: formData.location,
-        localGovernment: formData.localGovernment,
-        address: formData.address,
-        event: formData.event,
-        teamA: formData.teamA,
-        teamB: formData.teamB,
-        appointmentDate: formData.appointmentDate,
-        appointmentStartHour: formData.appointmentStartHour,
-        appointmentDuration: formData.appointmentDuration,
-        amount: formData.appointmentDuration * 5000,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phone: formData.phone || '',
+      gender: formData.gender,
+      address: formData.address,
+      hostel: formData.hostel,
+      event: formData.event,
+      teamA: formData.teamA,
+      teamB: formData.teamB,
+      appointmentDate: formData.appointmentDate,
+      appointmentStartHour: formData.appointmentStartHour,
+      appointmentDuration: formData.appointmentDuration,
+      amount: formData.appointmentDuration * 5000,
       paymentMethod: paymentMethod === 'cash' ? 'Cash/Transfer' : 'Card',
       cashAmount: paymentMethod === 'cash' ? formData.cashAmount : null,
       paymentReference: reference,
