@@ -29,7 +29,9 @@ import { FormLoadingComponent } from '../../form-loading/form-loading.component'
     RouterLink,
     RouterLinkActive,
     TableLoadingComponent,
-    FormLoadingComponent
+    FormLoadingComponent,
+    NgIf,
+    ReactiveFormsModule
   ],
   templateUrl: './add-booking.component.html',
   styleUrls: ['./add-booking.component.scss']
@@ -50,7 +52,7 @@ export class AddBookingComponent implements OnInit {
       phone: ['', [Validators.pattern(/^(?:\+234|0)[789]\d{9}$/)]],
       gender: ['', Validators.required],
       address: ['', [Validators.required, Validators.minLength(5)]],
-      hostel: ['', Validators.required],
+  /*    hostel: ['', Validators.required],*/
       event: ['', Validators.required],
       teamA: ['', [Validators.required, Validators.minLength(2)]],
       teamB: ['', [Validators.required, Validators.minLength(2)]],
@@ -209,7 +211,7 @@ export class AddBookingComponent implements OnInit {
       phone: string;
       gender: string;
       address: string;
-      hostel: string;
+   /*   hostel: string;*/
       event: string;
       teamA: string;
       teamB: string;
@@ -229,7 +231,7 @@ export class AddBookingComponent implements OnInit {
       phone: formData.phone || '',
       gender: formData.gender,
       address: formData.address,
-      hostel: formData.hostel,
+      /*hostel: formData.hostel,*/
       event: formData.event,
       teamA: formData.teamA,
       teamB: formData.teamB,
